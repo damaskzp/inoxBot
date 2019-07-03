@@ -9,12 +9,18 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import java.io.IOException;
 
 public class InoxBot extends TelegramLongPollingBot {
+
+    private CsvToHashMapReader csv;
+
+    public InoxBot() throws IOException {
+        csv = new CsvToHashMapReader();
+    }
+
     public void onUpdateReceived(Update update) {
 
         String textInputMsg = update.getMessage().getText();
         Long chatId = update.getMessage().getChatId();
 
-        CsvToHashMapReader csv = new CsvToHashMapReader();
         if (textInputMsg.equals("/help")) {
             try {
                 SendMessage sendMessage = new SendMessage(
@@ -29,7 +35,7 @@ public class InoxBot extends TelegramLongPollingBot {
                 SendMessage sendMessage = new SendMessage(
                         chatId, csv.price(textInputMsg));
                 execute(sendMessage);
-            } catch (TelegramApiException | IOException e) {
+            } catch (TelegramApiException e) {
                 e.printStackTrace();
             }
         }
