@@ -11,7 +11,7 @@ class CsvToHashMapReader {
 
     String price(String text) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(
-                "C:\\Users\\Dima Bulat\\Desktop\\data.csv",
+                "./src/main/resources/data.csv",
                 Charset.forName("windows-1251")));
         String line;
         HashMap<String, String> myMap = new HashMap<>();
