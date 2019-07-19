@@ -25,7 +25,9 @@ class CsvToHashMapReader {
     String price(String text) {
 
         if (myMap.get(text.toUpperCase()) == null) {
-            return "Наименование отсутствует в базе или неверный ввод. Try again, please.";
+            return "Наименование отсутствует\n" +
+                    "в базе или неверный ввод.\n" +
+                    "Try again, please.";
         } else {
             return text + " - " + myMap.get(text.toUpperCase()) + "грн.";
         }

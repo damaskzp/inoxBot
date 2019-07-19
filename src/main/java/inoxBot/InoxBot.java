@@ -24,8 +24,28 @@ public class InoxBot extends TelegramLongPollingBot {
         if (textInputMsg.equals("/help")) {
             try {
                 SendMessage sendMessage = new SendMessage(
-                        chatId, "Пример ввода запроса:\nСПП 1000х600\n" +
-                        "ВС2-300 1200х600\nСТ4 1000х500х1800.\n Регистр знаков не важен.");
+                        chatId,
+                        "Пример ввода запроса:\n" +
+                                "СПП(СП, СП2П) 1000х600\n" +
+                                "СПП(СП, СП2П) ББ 1000х600\n" +
+                                "ПК1(2, 3) 1000х600\n" +
+                                "СТ4(5) 1000х500\n" +
+                                "Регистр знаков не важен.");
+                execute(sendMessage);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else if (textInputMsg.equals("/start")) {
+            try {
+                SendMessage sendMessage = new SendMessage(
+                        chatId,
+                        "Привет!!!\n" +
+                                "Я Ваш помощник для поиска цены\n" +
+                                "на интересующее вас оборудование.\n" +
+                                "Чтобы увидеть пример ввода\n" +
+                                "запроса, отправьте сообщение\n" +
+                                "с текстом: /help\n" +
+                                "Удачи!!!");
                 execute(sendMessage);
             } catch (Exception e) {
                 e.printStackTrace();
