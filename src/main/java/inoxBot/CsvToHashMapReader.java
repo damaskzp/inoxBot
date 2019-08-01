@@ -2,7 +2,7 @@ package inoxBot;
 
 import java.io.*;
 import java.nio.charset.Charset;
-import java.util.HashMap;
+import java.util.*;
 
 class CsvToHashMapReader {
     private final HashMap<String, String> myMap;
@@ -23,15 +23,16 @@ class CsvToHashMapReader {
     }
 
     String price(String text) {
-
         if (myMap.get(text.toUpperCase()) == null) {
             return "Наименование отсутствует\n" +
                     "в базе или неверный ввод.\n" +
-                    "Try again, please.";
+                    "Try again, please. /help";
         } else {
             return text + " - " + myMap.get(text.toUpperCase()) + "грн.";
         }
     }
+
+
 }
 
 
