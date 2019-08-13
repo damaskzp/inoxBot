@@ -4,15 +4,16 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class InoxBot extends TelegramLongPollingBot {
 
@@ -56,8 +57,7 @@ public class InoxBot extends TelegramLongPollingBot {
         } else if (textInputMsg.substring(0, 1).toUpperCase().equals("Ф")) {
             SendPhoto sendPhoto = new SendPhoto();
             sendPhoto.setChatId(chatId);
-            sendPhoto.setPhoto(new File
-                    ("d:\\Foto\\" + textInputMsg.substring(1) + ".jpg"));
+            sendPhoto.setPhoto(new FotoEquipment(textInputMsg).getFoto());
             try {
                 execute(sendPhoto);
             } catch (TelegramApiException e) {
@@ -77,31 +77,79 @@ public class InoxBot extends TelegramLongPollingBot {
             SendMessage sendMessage = new SendMessage(
                     chatId, "Hello!!!");
             sendMessage.enableMarkdown(false);
-
-            ReplyKeyboardMarkup keyboardMarkup = new ReplyKeyboardMarkup();
-            keyboardMarkup.setSelective(true);
-            keyboardMarkup.setResizeKeyboard(true);
-            keyboardMarkup.setOneTimeKeyboard(false);
-
-            List<KeyboardRow> keyboard = new ArrayList<>();
-
-            KeyboardRow row = new KeyboardRow();
-            row.add("СПП 1000х600");
-            row.add("Ванны");
-            keyboard.add(row);
-
-            KeyboardRow row2 = new KeyboardRow();
-            row2.add("Столы2");
-            row2.add("Ванны2");
-            keyboard.add(row2);
-
-            keyboardMarkup.setKeyboard(keyboard);
-            sendMessage.setReplyMarkup(keyboardMarkup);
+            sendMessage.setReplyMarkup(new ReplyKeybrd().getKeybrd());
             try {
                 execute(sendMessage);
             } catch (TelegramApiException e) {
                 e.printStackTrace();
             }
+
+        } else if (textInputMsg.equals("Столы")) { // клавиатура
+
+            ReplyKeyboardMarkup keyboardMarkup2 = new ReplyKeyboardMarkup();
+            keyboardMarkup2.setSelective(true);
+            keyboardMarkup2.setResizeKeyboard(true);
+            keyboardMarkup2.setOneTimeKeyboard(false);
+
+            List<KeyboardRow> keyboard2 = new ArrayList<>();
+
+            KeyboardRow row = new KeyboardRow();
+            KeyboardButton button = new KeyboardButton("Table");
+            row.add(button);
+            row.add(new KeyboardButton("СПП"));
+            keyboard2.add(row);
+
+            KeyboardRow row2 = new KeyboardRow();
+            row2.add("СП2П");
+            row2.add("Далее");
+            keyboard2.add(row2);
+
+            keyboardMarkup2.setKeyboard(keyboard2);
+
+            SendMessage sendMessage = new SendMessage(
+                    chatId, "Выбери!");
+            sendMessage.enableMarkdown(false);
+            sendMessage.setReplyMarkup(keyboardMarkup2);
+
+            try {
+                execute(sendMessage.setText(sendMessage.getText() + " 123"));
+            } catch (TelegramApiException e) {
+                e.printStackTrace();
+            }
+        } else if (textInputMsg.equals("/ex")) {
+            InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
+
+            List<InlineKeyboardButton> keyboardRow1 = new ArrayList<>();
+            keyboardRow1.add(new InlineKeyboardButton().setText("Hello").setCallbackData("Bye"));
+
+            List<InlineKeyboardButton> keyboardRow2 = new ArrayList<>();
+            keyboardRow2.add(new InlineKeyboardButton().setText("Fuck").setCallbackData("Off"));
+
+            List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
+            rowList.add(keyboardRow1);
+            rowList.add(keyboardRow2);
+
+            inlineKeyboardMarkup.setKeyboard(rowList);
+
+            SendMessage sendMessage = new SendMessage(
+                    chatId, "Hello!!!").setReplyMarkup(inlineKeyboardMarkup);
+
+            try {
+                execute(sendMessage);
+                //.setText(update.getCallbackQuery().getData())
+                //  .setChatId(update.getCallbackQuery().getMessage().getChatId()));
+            } catch (TelegramApiException e) {
+                e.printStackTrace();
+            }
+        } else if (update.hasCallbackQuery()) {
+            try {
+                execute(new SendMessage()
+                        .setText(update.getCallbackQuery().getData())
+                        .setChatId(update.getCallbackQuery().getMessage().getChatId()));
+            } catch (TelegramApiException e) {
+                e.printStackTrace();
+            }
+
         } else {
             try {
                 SendMessage sendMessage = new SendMessage(
