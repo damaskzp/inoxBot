@@ -33,12 +33,100 @@ public class InoxBot extends TelegramLongPollingBot {
             try {
                 SendMessage sendMessage = new SendMessage(
                         chatId,
-                        "Пример ввода запроса:\n" +
-                                "СПП(СП, СП2П) 1000х600\n" +
-                                "СПП(СП, СП2П) ББ 1000х600\n" +
-                                "ПК1(2, 3) 1000х600\n" +
-                                "СТ4(5) 1000х500\n" +
-                                "Регистр знаков не важен.");
+                        "Выберите наименование группы товаров,\n" +
+                                "которое вас интересует:\n" +
+                                "/table - Столы\n" +
+                                "/rack - Стеллажи\n" +
+                                "/shelf - Полки\n" +
+                                "/hood - Зонты вытяжные.\n" +
+                                "/sink - Ванны");
+                execute(sendMessage);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else if (textInputMsg.equals("/table")) {
+            try {
+                SendMessage sendMessage = new SendMessage(
+                        chatId,
+                        "Столы производственные:\n" +
+                                "СП 600Х600\n" +
+                                "СПП 600Х600\n" +
+                                "СП2П 600Х600\n" +
+                                "СП ББ 600Х600\n" +
+                                "СПП ББ 600Х600\n" +
+                                "СПО 600Х600\n" +
+                                "СППО 600Х600\n" +
+                                "СПВС 300 1000Х600\n" +
+                                "СПВС 300 1000Х700\n" +
+                                "СППВС 300 1000Х600\n" +
+                                "СППВС 300 1000Х700");
+                execute(sendMessage);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else if (textInputMsg.equals("/rack")) {
+            try {
+                SendMessage sendMessage = new SendMessage(
+                        chatId,
+                        "Стеллажи производственные:\n" +
+                                "СТ4 700Х500\n" +
+                                "СТ5 700Х500\n" +
+                                "СТП4 700Х500\n" +
+                                "СТП5 700Х500\n" +
+                                "СТРШ4 700Х500\n" +
+                                "СТРШ5 700Х600\n" +
+                                "ССП 2Т2С 600\n" +
+                                "ССП 3ТС 600\n" +
+                                "ССП Т3С 600\n" +
+                                "ССП 4С 600\n" +
+                                "ССП 4Т 600");
+                execute(sendMessage);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else if ("/shelf".equals(textInputMsg.toUpperCase())) {
+            try {
+                SendMessage sendMessage = new SendMessage(
+                        chatId,
+                        "Полки кухонные:\n" +
+                                "ПК1 500Х250\n" +
+                                "ПК2 500Х250\n" +
+                                "ПК3 500Х250\n" +
+                                "ПСП ТС 600\n" +
+                                "ПСП СС 600\n" +
+                                "ПСП ТТ 600");
+                execute(sendMessage);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else if (textInputMsg.equals("/hood")) {
+            try {
+                SendMessage sendMessage = new SendMessage(
+                        chatId,
+                        "Зонты вытяжные:\n" +
+                                "ЗВВП 600Х600\n" +
+                                "ЗВВО 1000Х1000");
+                execute(sendMessage);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else if (textInputMsg.equals("/sink")) {
+            try {
+                SendMessage sendMessage = new SendMessage(
+                        chatId,
+                        "Ванны моечные:\n" +
+                                "ВС1 300 600Х600\n" +
+                                "ВС2 300 1000Х600\n" +
+                                "ВС3 300 1500Х600\n" +
+                                "ВСП1 300 600Х600\n" +
+                                "ВСП2 300 1000Х600\n" +
+                                "ВСП3 300 1500Х600\n" +
+                                "ВС1 300 600Х600К\n" +
+                                "ВС2 300 1000Х600К\n" +
+                                "ВС3 300 1500Х600К\n" +
+                                "ВСП1 300 600Х600К\n" +
+                                "ВСП2 300 1000Х600К\n" +
+                                "ВСП3 300 1500Х600К");
                 execute(sendMessage);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -47,10 +135,8 @@ public class InoxBot extends TelegramLongPollingBot {
             try {
                 SendMessage sendMessage = new SendMessage(
                         chatId,
-                        "Чтобы увидеть пример ввода\n" +
-                                "запроса, отправьте сообщение\n" +
-                                "с текстом: /help\n" +
-                                "Удачи!!!");
+                        "Чтобы начать работу\n" +
+                                "нажмите на /help\n");
                 execute(sendMessage);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -74,88 +160,77 @@ public class InoxBot extends TelegramLongPollingBot {
                 e.printStackTrace();
             }
 
-//        } else if (textInputMsg.equals("/key")) { //клавиатура
+            //       } else if (textInputMsg.equals("Столы")) { // клавиатура
+//
+//            ReplyKeyboardMarkup keyboardMarkup2 = new ReplyKeyboardMarkup();
+//            keyboardMarkup2.setSelective(true);
+//            keyboardMarkup2.setResizeKeyboard(true);
+//            keyboardMarkup2.setOneTimeKeyboard(false);
+//
+//            List<KeyboardRow> keyboard2 = new ArrayList<>();
+//
+//            KeyboardRow row = new KeyboardRow();
+//            KeyboardButton button = new KeyboardButton("Table");
+//            row.add(button);
+//            row.add(new KeyboardButton("СПП"));
+//            keyboard2.add(row);
+//
+//            KeyboardRow row2 = new KeyboardRow();
+//            row2.add("СП2П");
+//            row2.add("Далее");
+//            keyboard2.add(row2);
+//
+//            keyboardMarkup2.setKeyboard(keyboard2);
+//
 //            SendMessage sendMessage = new SendMessage(
-//                    chatId, "Hello!!!");
+//                    chatId, "Выбери!");
 //            sendMessage.enableMarkdown(false);
-//            sendMessage.setReplyMarkup(new ReplyKeybrd().getKeybrd());
+//            sendMessage.setReplyMarkup(keyboardMarkup2);
+//
 //            try {
-//                execute(sendMessage);
+//                execute(sendMessage.setText(sendMessage.getText() + " 123"));
 //            } catch (TelegramApiException e) {
 //                e.printStackTrace();
 //            }
-
-        } else if (textInputMsg.equals("Столы")) { // клавиатура
-
-            ReplyKeyboardMarkup keyboardMarkup2 = new ReplyKeyboardMarkup();
-            keyboardMarkup2.setSelective(true);
-            keyboardMarkup2.setResizeKeyboard(true);
-            keyboardMarkup2.setOneTimeKeyboard(false);
-
-            List<KeyboardRow> keyboard2 = new ArrayList<>();
-
-            KeyboardRow row = new KeyboardRow();
-            KeyboardButton button = new KeyboardButton("Table");
-            row.add(button);
-            row.add(new KeyboardButton("СПП"));
-            keyboard2.add(row);
-
-            KeyboardRow row2 = new KeyboardRow();
-            row2.add("СП2П");
-            row2.add("Далее");
-            keyboard2.add(row2);
-
-            keyboardMarkup2.setKeyboard(keyboard2);
-
-            SendMessage sendMessage = new SendMessage(
-                    chatId, "Выбери!");
-            sendMessage.enableMarkdown(false);
-            sendMessage.setReplyMarkup(keyboardMarkup2);
-
-            try {
-                execute(sendMessage.setText(sendMessage.getText() + " 123"));
-            } catch (TelegramApiException e) {
-                e.printStackTrace();
-            }
-        } else if (textInputMsg.equals("Стол")) {
-            InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
-
-            List<InlineKeyboardButton> keyboardRow1 = new ArrayList<>();
-            keyboardRow1.add(new InlineKeyboardButton().setText("СП").setCallbackData("Bye"));
-
-            List<InlineKeyboardButton> keyboardRow2 = new ArrayList<>();
-            keyboardRow2.add(new InlineKeyboardButton().setText("СПП").setCallbackData("Off"));
-
-            List<InlineKeyboardButton> keyboardRow3 = new ArrayList<>();
-            keyboardRow3.add(new InlineKeyboardButton().setText("СП2П").setCallbackData("Off"));
-
-            List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
-            rowList.add(keyboardRow1);
-            rowList.add(keyboardRow2);
-            rowList.add(keyboardRow3);
-
-            inlineKeyboardMarkup.setKeyboard(rowList);
-
-            SendMessage sendMessage = new SendMessage(
-                    chatId, "Сделайте выбор:").setReplyMarkup(inlineKeyboardMarkup);
-
-            try {
-                execute(sendMessage);
-                //.setText(update.getCallbackQuery().getData())
-                //  .setChatId(update.getCallbackQuery().getMessage().getChatId()));
-            } catch (TelegramApiException e) {
-                e.printStackTrace();
-            }
-        } else if (update.hasCallbackQuery()) {
-            try {
-               // AnswerCallbackThread answerThread = new AnswerCallbackThread(update.getCallbackQuery());
-
-                execute(new SendMessage()
-                        .setText(update.getCallbackQuery().getData())
-                        .setChatId(update.getCallbackQuery().getMessage().getChatId()));
-            } catch (TelegramApiException e) {
-                e.printStackTrace();
-            }
+//        } else if (textInputMsg.equals("Стол")) {
+//            InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
+//
+//            List<InlineKeyboardButton> keyboardRow1 = new ArrayList<>();
+//            keyboardRow1.add(new InlineKeyboardButton().setText("СП").setCallbackData("Bye"));
+//
+//            List<InlineKeyboardButton> keyboardRow2 = new ArrayList<>();
+//            keyboardRow2.add(new InlineKeyboardButton().setText("СПП").setCallbackData("Off"));
+//
+//            List<InlineKeyboardButton> keyboardRow3 = new ArrayList<>();
+//            keyboardRow3.add(new InlineKeyboardButton().setText("СП2П").setCallbackData("Off"));
+//
+//            List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
+//            rowList.add(keyboardRow1);
+//            rowList.add(keyboardRow2);
+//            rowList.add(keyboardRow3);
+//
+//            inlineKeyboardMarkup.setKeyboard(rowList);
+//
+//            SendMessage sendMessage = new SendMessage(
+//                    chatId, "Сделайте выбор:").setReplyMarkup(inlineKeyboardMarkup);
+//
+//            try {
+//                execute(sendMessage);
+//                //.setText(update.getCallbackQuery().getData())
+//                //  .setChatId(update.getCallbackQuery().getMessage().getChatId()));
+//            } catch (TelegramApiException e) {
+//                e.printStackTrace();
+//            }
+//        } else if (update.hasCallbackQuery()) {
+//            try {
+//               // AnswerCallbackThread answerThread = new AnswerCallbackThread(update.getCallbackQuery());
+//
+//                execute(new SendMessage()
+//                        .setText(update.getCallbackQuery().getData())
+//                        .setChatId(update.getCallbackQuery().getMessage().getChatId()));
+//            } catch (TelegramApiException e) {
+//                e.printStackTrace();
+//            }
 
         } else {
             try {
