@@ -74,16 +74,16 @@ public class InoxBot extends TelegramLongPollingBot {
                 e.printStackTrace();
             }
 
-        } else if (textInputMsg.equals("/key")) { //клавиатура
-            SendMessage sendMessage = new SendMessage(
-                    chatId, "Hello!!!");
-            sendMessage.enableMarkdown(false);
-            sendMessage.setReplyMarkup(new ReplyKeybrd().getKeybrd());
-            try {
-                execute(sendMessage);
-            } catch (TelegramApiException e) {
-                e.printStackTrace();
-            }
+//        } else if (textInputMsg.equals("/key")) { //клавиатура
+//            SendMessage sendMessage = new SendMessage(
+//                    chatId, "Hello!!!");
+//            sendMessage.enableMarkdown(false);
+//            sendMessage.setReplyMarkup(new ReplyKeybrd().getKeybrd());
+//            try {
+//                execute(sendMessage);
+//            } catch (TelegramApiException e) {
+//                e.printStackTrace();
+//            }
 
         } else if (textInputMsg.equals("Столы")) { // клавиатура
 
