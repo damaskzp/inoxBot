@@ -1,20 +1,12 @@
 package inoxBot;
 
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.meta.api.methods.AnswerCallbackQuery;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class InoxBot extends TelegramLongPollingBot {
 
@@ -38,8 +30,9 @@ public class InoxBot extends TelegramLongPollingBot {
                                 "/table - Столы\n" +
                                 "/rack - Стеллажи\n" +
                                 "/shelf - Полки\n" +
-                                "/hood - Зонты вытяжные.\n" +
-                                "/sink - Ванны");
+                                "/hood - Зонты вытяжные\n" +
+                                "/sink - Ванны\n" +
+                                "/list - Перечень фото оборудования");
                 execute(sendMessage);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -48,7 +41,8 @@ public class InoxBot extends TelegramLongPollingBot {
             try {
                 SendMessage sendMessage = new SendMessage(
                         chatId,
-                        "Столы производственные:\n" +
+                        "Столы производственные\n" +
+                                "(пример ввода; регистр символов не важен):\n" +
                                 "СП 600Х600\n" +
                                 "СПП 600Х600\n" +
                                 "СП2П 600Х600\n" +
@@ -68,7 +62,8 @@ public class InoxBot extends TelegramLongPollingBot {
             try {
                 SendMessage sendMessage = new SendMessage(
                         chatId,
-                        "Стеллажи производственные:\n" +
+                        "Стеллажи производственные\n" +
+                                "(пример ввода; регистр символов не важен):\n" +
                                 "СТ4 700Х500\n" +
                                 "СТ5 700Х500\n" +
                                 "СТП4 700Х500\n" +
@@ -84,11 +79,12 @@ public class InoxBot extends TelegramLongPollingBot {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        } else if ("/shelf".equals(textInputMsg.toUpperCase())) {
+        } else if (textInputMsg.equals("/shelf")) {
             try {
                 SendMessage sendMessage = new SendMessage(
                         chatId,
                         "Полки кухонные:\n" +
+                                "(пример ввода; регистр символов не важен):\n" +
                                 "ПК1 500Х250\n" +
                                 "ПК2 500Х250\n" +
                                 "ПК3 500Х250\n" +
@@ -103,7 +99,8 @@ public class InoxBot extends TelegramLongPollingBot {
             try {
                 SendMessage sendMessage = new SendMessage(
                         chatId,
-                        "Зонты вытяжные:\n" +
+                        "Зонты вытяжные\n" +
+                                "(пример ввода; регистр симовлов не важен):\n" +
                                 "ЗВВП 600Х600\n" +
                                 "ЗВВО 1000Х1000");
                 execute(sendMessage);
@@ -114,7 +111,8 @@ public class InoxBot extends TelegramLongPollingBot {
             try {
                 SendMessage sendMessage = new SendMessage(
                         chatId,
-                        "Ванны моечные:\n" +
+                        "Ванны моечные\n" +
+                                "(пример ввода; регистр симовлов не важен):\n" +
                                 "ВС1 300 600Х600\n" +
                                 "ВС2 300 1000Х600\n" +
                                 "ВС3 300 1500Х600\n" +
@@ -159,79 +157,6 @@ public class InoxBot extends TelegramLongPollingBot {
             } catch (TelegramApiException e) {
                 e.printStackTrace();
             }
-
-            //       } else if (textInputMsg.equals("Столы")) { // клавиатура
-//
-//            ReplyKeyboardMarkup keyboardMarkup2 = new ReplyKeyboardMarkup();
-//            keyboardMarkup2.setSelective(true);
-//            keyboardMarkup2.setResizeKeyboard(true);
-//            keyboardMarkup2.setOneTimeKeyboard(false);
-//
-//            List<KeyboardRow> keyboard2 = new ArrayList<>();
-//
-//            KeyboardRow row = new KeyboardRow();
-//            KeyboardButton button = new KeyboardButton("Table");
-//            row.add(button);
-//            row.add(new KeyboardButton("СПП"));
-//            keyboard2.add(row);
-//
-//            KeyboardRow row2 = new KeyboardRow();
-//            row2.add("СП2П");
-//            row2.add("Далее");
-//            keyboard2.add(row2);
-//
-//            keyboardMarkup2.setKeyboard(keyboard2);
-//
-//            SendMessage sendMessage = new SendMessage(
-//                    chatId, "Выбери!");
-//            sendMessage.enableMarkdown(false);
-//            sendMessage.setReplyMarkup(keyboardMarkup2);
-//
-//            try {
-//                execute(sendMessage.setText(sendMessage.getText() + " 123"));
-//            } catch (TelegramApiException e) {
-//                e.printStackTrace();
-//            }
-//        } else if (textInputMsg.equals("Стол")) {
-//            InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
-//
-//            List<InlineKeyboardButton> keyboardRow1 = new ArrayList<>();
-//            keyboardRow1.add(new InlineKeyboardButton().setText("СП").setCallbackData("Bye"));
-//
-//            List<InlineKeyboardButton> keyboardRow2 = new ArrayList<>();
-//            keyboardRow2.add(new InlineKeyboardButton().setText("СПП").setCallbackData("Off"));
-//
-//            List<InlineKeyboardButton> keyboardRow3 = new ArrayList<>();
-//            keyboardRow3.add(new InlineKeyboardButton().setText("СП2П").setCallbackData("Off"));
-//
-//            List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
-//            rowList.add(keyboardRow1);
-//            rowList.add(keyboardRow2);
-//            rowList.add(keyboardRow3);
-//
-//            inlineKeyboardMarkup.setKeyboard(rowList);
-//
-//            SendMessage sendMessage = new SendMessage(
-//                    chatId, "Сделайте выбор:").setReplyMarkup(inlineKeyboardMarkup);
-//
-//            try {
-//                execute(sendMessage);
-//                //.setText(update.getCallbackQuery().getData())
-//                //  .setChatId(update.getCallbackQuery().getMessage().getChatId()));
-//            } catch (TelegramApiException e) {
-//                e.printStackTrace();
-//            }
-//        } else if (update.hasCallbackQuery()) {
-//            try {
-//               // AnswerCallbackThread answerThread = new AnswerCallbackThread(update.getCallbackQuery());
-//
-//                execute(new SendMessage()
-//                        .setText(update.getCallbackQuery().getData())
-//                        .setChatId(update.getCallbackQuery().getMessage().getChatId()));
-//            } catch (TelegramApiException e) {
-//                e.printStackTrace();
-//            }
-
         } else {
             try {
                 SendMessage sendMessage = new SendMessage(
@@ -242,18 +167,6 @@ public class InoxBot extends TelegramLongPollingBot {
             }
         }
     }
-
-//    private synchronized void answerCallbackQuery(String callbackId, String message) {
-//        AnswerCallbackQuery answer = new AnswerCallbackQuery();
-//        answer.setCallbackQueryId(callbackId);
-//        answer.setText(message);
-//        answer.setShowAlert(true);
-//        try {
-//            answerCallbackQuery(answer);
-//        } catch (TelegramApiException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     public String getBotUsername() {
         return "Inox_bot";

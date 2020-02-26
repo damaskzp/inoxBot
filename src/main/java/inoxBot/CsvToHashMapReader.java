@@ -8,8 +8,9 @@ class CsvToHashMapReader {
     private final HashMap<String, String> myMap;
 
     public CsvToHashMapReader() throws IOException {
+
         BufferedReader br = new BufferedReader(new InputStreamReader(
-                this.getClass().getResourceAsStream("/data.csv"),
+                this.getClass().getResourceAsStream("/data1.csv"),
                 Charset.forName("windows-1251")));
         String line;
         myMap = new HashMap<>();

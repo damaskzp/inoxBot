@@ -16,6 +16,11 @@ class ContentDir {
         for (String s : list) {
             listFiles.append(s);
         }
-        return listFiles.toString();
+        return "Чтобы получить фото оборудования,\n"+
+                "отправьте сообщение с буквой 'ф'\n"+
+                "в начале имени файла.\n" +
+                "Например: ФСПП (регистр не важен).\n"+
+                " \n"
+                +listFiles.toString();
     }
 }
