@@ -51,8 +51,6 @@ public class InoxBot extends TelegramLongPollingBot {
                                 "СПО 600Х600\n" +
                                 "СППО 600Х600\n" +
                                 "СПВС 300 1000Х600\n" +
-                                "СПВС 300 1000Х700\n" +
-                                "СППВС 300 1000Х600\n" +
                                 "СППВС 300 1000Х700");
                 execute(sendMessage);
             } catch (Exception e) {
@@ -100,7 +98,7 @@ public class InoxBot extends TelegramLongPollingBot {
                 SendMessage sendMessage = new SendMessage(
                         chatId,
                         "Зонты вытяжные\n" +
-                                "(пример ввода; регистр симовлов не важен):\n" +
+                                "(пример ввода; регистр символов не важен):\n" +
                                 "ЗВВП 600Х600\n" +
                                 "ЗВВО 1000Х1000");
                 execute(sendMessage);
@@ -112,7 +110,7 @@ public class InoxBot extends TelegramLongPollingBot {
                 SendMessage sendMessage = new SendMessage(
                         chatId,
                         "Ванны моечные\n" +
-                                "(пример ввода; регистр симовлов не важен):\n" +
+                                "(пример ввода; регистр символов не важен):\n" +
                                 "ВС1 300 600Х600\n" +
                                 "ВС2 300 1000Х600\n" +
                                 "ВС3 300 1500Х600\n" +
